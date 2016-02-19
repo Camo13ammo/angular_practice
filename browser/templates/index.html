@@ -7,26 +7,29 @@
     <script src="/js/app.js" defer></script>
 
   </head>
-  <body ng-app="app">
+  <body ng-app="app" ng-controller="MainCtrl">
     <h1 href="/">
-      <span class="glyphicon glyphicon-pencil"></span>
-      <span>   My Cool To-Do List</span>
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span>   My Cool To-Do List</span>
     </h1>
     <div class="row activities">
+      <form ng-submit="addItem()">
+        <input ng-model="todo" >
+      </form>
     </div>
 
     <div class="row">
       <div class='col-xs-6'>
         <h2> To Do </h2>
         <ul class="lists" id="todo-list">
-        <!-- Your Directive Here -->
+          <list-item ng-repeat="item in items | filter:{completed: false}" items="items" item="item"></list-item>
         </ul>
       </div>
 
       <div class='col-xs-6'>
         <h2> Complete </h2>
         <ul class="lists" id="complete-list">
-        <!-- Your Directive Here -->
+          <list-item ng-repeat="item in items | filter:{completed: true}" items="items" item="item"></list-item>
         </ul>
       </div>
     </div>
